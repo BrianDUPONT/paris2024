@@ -9,5 +9,6 @@ package sio.paris2024.model;
  * @author SIO2
  */
 public class Sport {
-    
+    private int id;
+    private String nom;
 }
