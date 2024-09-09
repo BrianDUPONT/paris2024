@@ -9,8 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import static sio.paris2024.database.DaoAthlete.requeteSql;
-import static sio.paris2024.database.DaoAthlete.resultatRequete;
+import static sio.paris2024.database.DaoPays.requeteSql;
+import static sio.paris2024.database.DaoPays.resultatRequete;
 import sio.paris2024.model.Athlete;
 import sio.paris2024.model.Pays;
 
@@ -52,7 +52,7 @@ public class DaoPays {
         
     public static Pays getPaysById(Connection cnx, int idPays){
         
-        Athlete a = new Athlete();
+        Pays p = new Pays();
         try{
             requeteSql = cnx.prepareStatement("select p.id as p_id, p.code as p_code, p.nom as p_nom,  a.id as a_id, a.nom as a_nom " +
                          " from pays p inner join athelete a " +
@@ -64,12 +64,13 @@ public class DaoPays {
             
             if (resultatRequete.next()){
                 
-                   a.setId(resultatRequete.getInt("p_id"));
-                   a.setCode(resultatRequete.getString("p_nom"));
-                    
-                   Pays p = new Pays();
                    p.setId(resultatRequete.getInt("p_id"));
-                   p.setCode(resultatRequete.getString("p_nom"));
+                   p.setCode(resultatRequete.getString("p_code"));
+                   p.setNom(resultatRequete.getString("p_nom"));
+                    
+                   Athlete a = new Athlete();
+                   a.setId(resultatRequete.getInt("a_id"));
+                   a.setNom(resultatRequete.getString("a_nom"));
                 
                     a.setPays(p);
                 
@@ -80,9 +81,7 @@ public class DaoPays {
             e.printStackTrace();
             System.out.println("La requête de getLesPompiers e généré une erreur");
         }
-        return a;
+        return p;
     }
         
-    }
-    
 }
