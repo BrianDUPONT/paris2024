@@ -50,38 +50,37 @@ public class DaoPays {
         return lesPays;
     }
         
-    public static Pays getPaysById(Connection cnx, int idPays){
-        
+    public static Pays getPaysById(Connection cnx, int idPays) {
         Pays p = new Pays();
-        try{
-            requeteSql = cnx.prepareStatement("select p.id as p_id, p.code as p_code, p.nom as p_nom,  a.id as a_id, a.nom as a_nom " +
-                         " from pays p inner join athelete a " +
-                         " on p.id = a.pays_id " + 
-                         " where p.id = ? ");
-            //System.out.println("REQ="+ requeteSql);
+        ArrayList<Athlete> athletes = new ArrayList<>();
+        try {
+            requeteSql = cnx.prepareStatement("select p.id as p_id, p.code as p_code, p.nom as p_nom, a.id as a_id, a.prenom as a_prenom, a.nom as a_nom " +
+                         "from pays p inner join athlete a " +
+                         "on p.id = a.pays_id " +
+                         "where p.id = ?");
             requeteSql.setInt(1, idPays);
             resultatRequete = requeteSql.executeQuery();
-            
-            if (resultatRequete.next()){
-                
-                   p.setId(resultatRequete.getInt("p_id"));
-                   p.setCode(resultatRequete.getString("p_code"));
-                   p.setNom(resultatRequete.getString("p_nom"));
-                    
-                   Athlete a = new Athlete();
-                   a.setId(resultatRequete.getInt("a_id"));
-                   a.setNom(resultatRequete.getString("a_nom"));
-                
-                    a.setPays(p);
-                
+
+            while (resultatRequete.next()) {
+                if (p.getId() == 0) {
+                    p.setId(resultatRequete.getInt("p_id"));
+                    p.setCode(resultatRequete.getString("p_code"));
+                    p.setNom(resultatRequete.getString("p_nom"));
+                }
+                Athlete a = new Athlete();
+                a.setId(resultatRequete.getInt("a_id"));
+                a.setPrenom(resultatRequete.getString("a_prenom"));
+                a.setNom(resultatRequete.getString("a_nom"));
+                athletes.add(a);
             }
-           
-        }
-        catch (SQLException e){
+            p.setLesAthletes(athletes);
+        } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("La requête de getLesPompiers e généré une erreur");
+            System.out.println("La requête de getPaysById a généré une erreur");
         }
         return p;
     }
+
+
         
 }
