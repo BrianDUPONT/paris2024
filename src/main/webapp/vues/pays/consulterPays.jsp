@@ -12,28 +12,71 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>PARIS 2024</title>
+        <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+        
+        <title>Paris 2024</title>
+
+        <style>
+            body {
+		padding-top: 50px;
+            }
+                .special {
+		padding-top:50px;
+	}
+        </style>
     </head>
     <body>
+      
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a  href ='../ServletPays/lister' class="navbar-brand" href=".">Listes des pays participants</a>
+			</div>
+		</div>
+	</nav>
+        <div class="container special">
+            <h2 class="h2">Liste des pays</h2>
+		<div class="table-responsive">
+
         <%
             Pays p = (Pays) request.getAttribute("aPays");
-        %>
-        <h1><% out.println(p.getNom()); %></h1>
-        
-        <table>
-            <tr>
-                <td>Listes des Athlètes :</td>
-                <td>
+        %>        
+        <table class="table table-striped table-sm">  
+                <thead>
+                    <tr>             
+                        <th>id</th>
+                        <th>code</th>
+                        <th>nom</th>               
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
                     <%
                         if (p != null && p.getLesAthletes() != null) {
                             for (Athlete a : p.getLesAthletes()) {
-                                out.println("<p>" + a.getPrenom() + " " + a.getNom() + "</p>");
-                            }
+                                out.println("<tr><td>");
+                                out.println(a.getId());
+                                out.println("</td>");
+
+                                out.println("<td>");
+                                out.println(a.getNom());
+                                out.println("</a></td>");;      
+                                
+                                out.println("<td>");
+                                out.println(a.getPrenom());
+                                out.println("</td></tr>");
                         } else {
                             out.println("Aucun athlète trouvé");
                         }
                     %>
-                </td>
-            </tr>
-        </table>
-    </body>
+                    </tr>
+                </tbody>
+            </table>
+        </body>
+         </div>
+       </div>
+  
 </html>
