@@ -87,7 +87,7 @@ public class ServletPays extends HttpServlet {
         if(url.equals("/paris2024/ServletPays/lister"))
         {              
             ArrayList<Pays> lesPays = DaoPays.getLesPays(cnx);
-            request.setAttribute("pLesPays", lesPays);
+            request.setAttribute("aLesPays", lesPays);
             //System.out.println("lister eleves - nombres d'élèves récupérés" + lesEleves.size() );
            getServletContext().getRequestDispatcher("/vues/pays/listerPays.jsp").forward(request, response);
         }
@@ -96,7 +96,7 @@ public class ServletPays extends HttpServlet {
         { 
             int idPays = Integer.parseInt((String)request.getParameter("idPays"));
             Pays p = DaoPays.getPaysById(cnx, idPays);
-            request.setAttribute("pPays", p);
+            request.setAttribute("aPays", p);
             //System.out.println("lister eleves - nombres d'élèves récupérés" + lesEleves.size() );
            getServletContext().getRequestDispatcher("/vues/pays/consulterPays.jsp").forward(request, response);
         }    

@@ -35,6 +35,10 @@
         <servlet-name>ServletPays</servlet-name>
         <url-pattern>/ServletPays/lister</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletPays</servlet-name>
+        <url-pattern>/ServletPays/consulter</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
