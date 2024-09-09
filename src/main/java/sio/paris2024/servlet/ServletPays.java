@@ -4,20 +4,43 @@
  */
 package sio.paris2024.servlet;
 
+import jakarta.servlet.ServletContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import sio.paris2024.database.DaoPays;
+import sio.paris2024.model.Pays;
 
 /**
  *
- * @author SIO2
+ * @author zakina
  */
-@WebServlet(name = "ServletPays", urlPatterns = {"/ServletPays"})
 public class ServletPays extends HttpServlet {
+    
+    Connection cnx ;
+            
+    @Override
+    public void init()
+    {     
+        ServletContext servletContext=getServletContext();
+        
+        System.out.println("SERVLKET CONTEXT=" + servletContext.getContextPath());
+        cnx = (Connection)servletContext.getAttribute("connection"); 
+        
+        try {
+            System.out.println("INIT SERVLET=" + cnx.getSchema());
+        } catch (SQLException ex) {
+            Logger.getLogger(ServletPays.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -57,7 +80,35 @@ public class ServletPays extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String url = request.getRequestURI();  
+       
+        // Récup et affichage les athletes 
+        if(url.equals("/paris2024/ServletAthlete/lister"))
+        {              
+            ArrayList<Athlete> lesAthletes = DaoAthlete.getLesAthletes(cnx);
+            request.setAttribute("pLesAthletes", lesAthletes);
+            //System.out.println("lister eleves - nombres d'élèves récupérés" + lesEleves.size() );
+           getServletContext().getRequestDispatcher("/vues/athlete/listerAthletes.jsp").forward(request, response);
+        }
+        
+        if(url.equals("/paris2024/ServletAthlete/consulter"))
+        { 
+            int idAthlete = Integer.parseInt((String)request.getParameter("idAthlete"));
+            Athlete a = DaoAthlete.getAthleteById(cnx, idAthlete);
+            request.setAttribute("pAthlete", a);
+            //System.out.println("lister eleves - nombres d'élèves récupérés" + lesEleves.size() );
+           getServletContext().getRequestDispatcher("/vues/athlete/consulterAthlete.jsp").forward(request, response);
+        }
+        
+          if(url.equals("/paris2024/ServletAthlete/ajouter"))
+        {                   
+            ArrayList<Pays> lesPays = DaoPays.getLesPays(cnx);
+            request.setAttribute("pLesPays", lesPays);
+            this.getServletContext().getRequestDispatcher("/vues/athlete/ajouterAthlete.jsp" ).forward( request, response );
+        }
+        
+        
     }
 
     /**
@@ -71,7 +122,44 @@ public class ServletPays extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+             
+        
+         FormAthlete form = new FormAthlete();
+		
+        /* Appel au traitement et à la validation de la requête, et récupération du bean en résultant */
+        Athlete ath = form.ajouterAthlete(request);
+        
+        /* Stockage du formulaire et de l'objet dans l'objet request */
+        request.setAttribute( "form", form );
+        request.setAttribute( "pAthlete", ath );
+		
+        if (form.getErreurs().isEmpty()){
+            Athlete athleteInsere =  DaoAthlete.addAthlete(cnx, ath);
+            if (athleteInsere != null ){
+                request.setAttribute( "pAthlete", athleteInsere );
+                this.getServletContext().getRequestDispatcher("/vues/athlete/consulterAthlete.jsp" ).forward( request, response );
+            }
+            else 
+            {
+                // Cas oùl'insertion en bdd a échoué
+                //renvoyer vers une page d'erreur 
+            }
+           
+        }
+        else
+        { 
+            // il y a des erreurs. On réaffiche le formulaire avec des messages d'erreurs
+            ArrayList<Pays> lesCasernes = DaoPays.getLesPays(cnx);
+            request.setAttribute("pLesPays", lesCasernes);
+            this.getServletContext().getRequestDispatcher("/vues/athlete/ajouterAthlete.jsp" ).forward( request, response );
+        }
+        
+        
+        
+        
+        
+        
+        
     }
 
     /**
