@@ -37,14 +37,13 @@
 			</div>
 		</div>
 	</nav>
-        <div class="container special">
-            <h2 class="h2">Liste des pays</h2>
-		<div class="table-responsive">
-
         <%
             Pays p = (Pays) request.getAttribute("aPays");
-        %>        
-        <table class="table table-striped table-sm">  
+        %>
+        <div class="container special">
+            <h2 class="h2">Liste des participants en <% out.println(p.getNom()); %></h2>
+	<div class="table-responsive">
+            <table class="table table-striped table-sm">  
                 <thead>
                     <tr>             
                         <th>id</th>
@@ -68,7 +67,7 @@
                                 out.println("<td>");
                                 out.println(a.getPrenom());
                                 out.println("</td></tr>");
-                        } else {
+                        }} else {
                             out.println("Aucun athlète trouvé");
                         }
                     %>
