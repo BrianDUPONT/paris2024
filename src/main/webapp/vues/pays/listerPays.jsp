@@ -43,7 +43,7 @@
             <h2 class="h2">Liste des pays</h2>
 		<div class="table-responsive">
                 <%
-                    ArrayList<Pays> lesPays = (ArrayList)request.getAttribute("pLesPays");
+                    ArrayList<Pays> lesPays = (ArrayList)request.getAttribute("aLesPays");
                 %>
                 <table class="table table-striped table-sm">  
                 <thead>
