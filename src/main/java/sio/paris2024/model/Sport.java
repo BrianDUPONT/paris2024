@@ -8,25 +8,21 @@ import java.util.ArrayList;
 
 /**
  *
- * @author SIO2
+ * @author zakina
  */
 public class Sport {
+    
     private int id;
     private String nom ;
-    private ArrayList<Sport> lesSports ;
-
+    private ArrayList<Athlete> lesAthletes ;
     public Sport() {
     }
-
+    
     public Sport(int id, String nom) {
         this.id = id;
         this.nom = nom;
     }
 
-    public Sport(int id) {
-        this.id = id;
-    }
-    
     public int getId() {
         return id;
     }
@@ -43,20 +39,13 @@ public class Sport {
         this.nom = nom;
     }
 
-    public ArrayList<Sport> getLesSports() {
-        return lesSports;
+    public ArrayList<Athlete> getLesAthletes() {
+        return lesAthletes;
     }
 
-    public void setLesSports(ArrayList<Sport> lesSports) {
-        this.lesSports = lesSports;
+    public void setLesAthletes(ArrayList<Athlete> lesAthletes) {
+        this.lesAthletes = lesAthletes;
     }
     
-    public void addSport(Sport a){
-        
-        if (lesSports == null){
-            lesSports = new ArrayList<Sport>();
-        }
-        lesSports.add(a);
-    }
     
 }
