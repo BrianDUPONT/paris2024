@@ -1,12 +1,12 @@
 <%-- 
-    Document   : listerAthletes
-    Created on : 14 août 2024, 12:27:51
-    Author     : zakina
+    Document   : consulterPays
+    Created on : 9 sept. 2024, 11:22:36
+    Author     : SIO2
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="sio.paris2024.model.Athlete"%>
 <%@page import="sio.paris2024.model.Sport"%>
-<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -33,39 +33,44 @@
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
-				<a  href ='../ServletSport/lister' class="navbar-brand" href=".">Système de gestion des sports</a>
+				<a  href ='../ServletSport/lister' class="navbar-brand" href=".">Listes des sports</a>
 			</div>
 		</div>
 	</nav>
-    <body>
-       <div class="container special">
-            <h2 class="h2">Liste des sports</h2>
-		<div class="table-responsive">
-                <%
-                    ArrayList<Sport> lesSports = (ArrayList)request.getAttribute("pLesSports");
-                %>
-                <table class="table table-striped table-sm">  
+        <%
+            Sport s = (Sport) request.getAttribute("pSport");
+        %>
+        <div class="container special">
+            <h2 class="h2">Liste des participants en <% out.println(s.getNom()); %></h2>
+	<div class="table-responsive">
+            <table class="table table-striped table-sm">  
                 <thead>
                     <tr>             
                         <th>id</th>
-                        <th>nom</th>               
+                        <th>nom</th>
+                        <th>prénom</th>               
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <%
-                            for (Sport s : lesSports)
-                            {              
+                    <%
+                        if (s != null && s.getLesAthletes() != null) {
+                            for (Athlete a : s.getLesAthletes()) {
                                 out.println("<tr><td>");
-                                out.println(s.getId());
+                                out.println(a.getId());
                                 out.println("</td>");
 
-                                out.println("<td><a href ='../ServletSport/consulter?idSport="+ s.getId()+ "'>");
-                                out.println(s.getNom());
+                                out.println("<td>");
+                                out.println(a.getNom());
                                 out.println("</a></td>");;      
-                               
-                            }
-                        %>
+                                
+                                out.println("<td>");
+                                out.println(a.getPrenom());
+                                out.println("</td></tr>");
+                        }} else {
+                            out.println("Aucun athlète trouvé");
+                        }
+                    %>
                     </tr>
                 </tbody>
             </table>

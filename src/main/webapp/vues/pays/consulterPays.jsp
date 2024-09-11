@@ -47,8 +47,8 @@
                 <thead>
                     <tr>             
                         <th>id</th>
-                        <th>code</th>
-                        <th>nom</th>               
+                        <th>nom</th>
+                        <th>prénom</th>               
                     </tr>
                 </thead>
                 <tbody>

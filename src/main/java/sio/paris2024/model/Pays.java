@@ -15,11 +15,14 @@ public class Pays {
     private String code;
     private String nom ;
     private ArrayList<Athlete> lesAthletes ;
+    private Athlete athlete ;
+
     public Pays() {
     }
 
-    public Pays(int id, String nom) {
+    public Pays(int id, String code, String nom) {
         this.id = id;
+        this.code = code;
         this.nom = nom;
     }
 
@@ -65,6 +68,14 @@ public class Pays {
             lesAthletes = new ArrayList<Athlete>();
         }
         lesAthletes.add(a);
+    }
+
+    public Athlete getAthlete() {
+        return athlete;
+    }
+
+    public void setAthlete(Athlete athlete) {
+        this.athlete = athlete;
     }
     
 }
