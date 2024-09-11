@@ -33,7 +33,7 @@
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
-				<a  href ='../ServletAthlete/lister' class="navbar-brand" href=".">Système de gestion des sports</a>
+				<a  href ='../ServletSport/lister' class="navbar-brand" href=".">Système de gestion des sports</a>
 			</div>
 		</div>
 	</nav>
@@ -60,7 +60,7 @@
                                 out.println(s.getId());
                                 out.println("</td>");
 
-                                out.println("<td><a href ='../ServletAthlete/consulter?idAthlete="+ s.getId()+ "'>");
+                                out.println("<td><a href ='../ServletSport/consulter?idSport="+ s.getId()+ "'>");
                                 out.println(s.getNom());
                                 out.println("</a></td>");;      
                                
