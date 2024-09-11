@@ -15,6 +15,7 @@ public class Sport {
     private int id;
     private String nom ;
     private ArrayList<Athlete> lesAthletes ;
+    private Athlete athlete ;
     public Sport() {
     }
     
@@ -46,6 +47,15 @@ public class Sport {
     public void setLesAthletes(ArrayList<Athlete> lesAthletes) {
         this.lesAthletes = lesAthletes;
     }
+
+    public Athlete getAthlete() {
+        return athlete;
+    }
+
+    public void setAthlete(Athlete athlete) {
+        this.athlete = athlete;
+    }
+    
     
     
 }
