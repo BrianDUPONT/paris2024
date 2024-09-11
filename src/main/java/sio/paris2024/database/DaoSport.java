@@ -24,26 +24,17 @@ public class DaoSport {
     
     public static ArrayList<Sport> getLesSports(Connection cnx){
         
-        ArrayList<Sport> lesSports = new ArrayList<Sport>();
+         ArrayList<Sport> lesSports = new ArrayList<Sport>();
         try{
-            requeteSql = cnx.prepareStatement("select s.id as s_id, s.nom as s_nom, a.id as a_id, a.nom as a_nom, a.prenom as a_prenom " +
-                         " from sport s inner join athlete a " +
-                         " on a.sport_id = s.id ");
+            requeteSql = cnx.prepareStatement("select * from sport");
             //System.out.println("REQ="+ requeteSql);
             resultatRequete = requeteSql.executeQuery();
             
             while (resultatRequete.next()){
                 
                 Sport s = new Sport();
-                   s.setId(resultatRequete.getInt("s_id"));
-                   s.setNom(resultatRequete.getString("s_nom"));
-                         
-                   Athlete a = new Athlete();
-                   a.setId(resultatRequete.getInt("a_id"));
-                   a.setNom(resultatRequete.getString("a_nom"));
-                   a.setNom(resultatRequete.getString("a_prenom"));
-
-                    s.setAthlete(a);
+                s.setId(resultatRequete.getInt("id"));
+                s.setNom(resultatRequete.getString("nom"));
                 
                 lesSports.add(s);
             }
@@ -51,9 +42,10 @@ public class DaoSport {
         }
         catch (SQLException e){
             e.printStackTrace();
-            System.out.println("La requête de getLesPompiers e généré une erreur");
+            System.out.println("La requête de getLesSports e généré une erreur");
         }
         return lesSports;
+        
     }
     
     public static Sport getSportById(Connection cnx, int idSport){
