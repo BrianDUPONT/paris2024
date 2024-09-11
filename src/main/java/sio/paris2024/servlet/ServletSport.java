@@ -17,13 +17,11 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import sio.paris2024.database.DaoSport;
-import sio.paris2024.database.DaoPays;
-import sio.paris2024.database.DaoSport;
 import sio.paris2024.model.Sport;
 
 /**
  *
- * @author zakina
+ * @author SIO2
  */
 public class ServletSport extends HttpServlet {
     
