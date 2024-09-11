@@ -102,7 +102,7 @@ public class DaoSport {
             requeteSql=connection.prepareStatement("INSERT INTO sport (nom)\n" +
                     "VALUES (?,?)", requeteSql.RETURN_GENERATED_KEYS );
             requeteSql.setString(1, spo.getNom());      
-            requeteSql.setInt(2, spo.getSport().getId());
+            requeteSql.setInt(2, spo.getAthlete().getId());
 
            /* Exécution de la requête */
             requeteSql.executeUpdate();
