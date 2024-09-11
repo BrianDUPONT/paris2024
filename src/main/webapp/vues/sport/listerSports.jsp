@@ -57,11 +57,11 @@
                             for (Sport s : lesSports)
                             {              
                                 out.println("<tr><td>");
-                                out.println(a.getId());
+                                out.println(s.getId());
                                 out.println("</td>");
 
-                                out.println("<td><a href ='../ServletAthlete/consulter?idAthlete="+ a.getId()+ "'>");
-                                out.println(a.getNom());
+                                out.println("<td><a href ='../ServletAthlete/consulter?idAthlete="+ s.getId()+ "'>");
+                                out.println(s.getNom());
                                 out.println("</a></td>");;      
                                
                             }
