@@ -4,11 +4,59 @@
  */
 package sio.paris2024.model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author SIO2
  */
 public class Sport {
     private int id;
-    private String nom;
+    private String nom ;
+    private ArrayList<Sports> lesSports ;
+
+    public Sport() {
+    }
+
+    public Sport(int id, String nom) {
+        this.id = id;
+        this.nom = nom;
+    }
+
+    public Sport(int id) {
+        this.id = id;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public ArrayList<Sport> getLesSports() {
+        return lesSports;
+    }
+
+    public void setLesSports(ArrayList<Sport> lesSports) {
+        this.lesSports = lesSports;
+    }
+    
+    public void addSport(Sport a){
+        
+        if (lesSports == null){
+            lesSports = new ArrayList<Sport>();
+        }
+        lesSports.add(a);
+    }
+    
 }
