@@ -7,7 +7,6 @@ package sio.paris2024.form;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
-import sio.paris2024.model.Athlete;
 import sio.paris2024.model.Sport;
 
 /**
@@ -60,9 +59,7 @@ public class FormSport {
       
         Sport spo  = new Sport();
          
-        String nom = getDataForm( request, "nom" );
-        int idAthlete = Integer.parseInt((String)getDataForm( request, "idAthlete" ));
-       
+        String nom = getDataForm( request, "nom" );       
       
         try {
              validationNom( nom );
@@ -76,11 +73,6 @@ public class FormSport {
         } else {
             resultat = "Échec de l'ajout.";
         }
-         
-      
-     
-        Athlete a = new Athlete(idAthlete);
-        spo.setAthlete(a);
         
         return spo ;
     }
