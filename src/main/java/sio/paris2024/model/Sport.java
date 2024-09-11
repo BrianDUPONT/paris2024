@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Sport {
     private int id;
     private String nom ;
-    private ArrayList<Sports> lesSports ;
+    private ArrayList<Sport> lesSports ;
 
     public Sport() {
     }
