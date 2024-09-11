@@ -21,7 +21,7 @@ import sio.paris2024.model.Sport;
 
 /**
  *
- * @author SIO2
+ * @author zakina
  */
 public class ServletSport extends HttpServlet {
     
