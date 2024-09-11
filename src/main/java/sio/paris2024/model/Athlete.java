@@ -19,10 +19,16 @@ public class Athlete {
     private Pays pays ;
     public Athlete() {
     }
+
+    public Athlete(int id) {
+        this.id = id;
+    }
     
-    public Athlete(int id, String nom) {
+    public Athlete(int id, String nom, String prenom, LocalDate dateNaiss) {
         this.id = id;
         this.nom = nom;
+        this.prenom = prenom;
+        this.dateNaiss = dateNaiss;
     }
 
     public int getId() {
