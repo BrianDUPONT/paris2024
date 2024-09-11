@@ -29,7 +29,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletSport</servlet-name>
-        <url-pattern>/ServletSport</url-pattern>
+        <url-pattern>/ServletSport/lister</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletPays</servlet-name>
