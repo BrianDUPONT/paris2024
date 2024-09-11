@@ -6,9 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="sio.paris2024.model.Pays"%>
-<%@page import="sio.paris2024.model.Athlete"%>
-<%@page import="sio.paris2024.form.FormAthlete"%>
+<%@page import="sio.paris2024.model.Sport"%>
+<%@page import="sio.paris2024.form.FormSport"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,29 +15,16 @@
         <title>paris 2024</title>
     </head>
     <body>
-        <h1>NOUVEL ATHLETE</h1>
+        <h1>NOUVEAU SPORT</h1>
         
             <%
-                FormAthlete form = (FormAthlete)request.getAttribute("form");
+                FormSport form = (FormSport)request.getAttribute("form");
             %>
         
         <form class="form-inline" action="ajouter" method="POST">
                 <label for="nom">NOM : </label>
                 <input id="nom" type="text" name="nom"  size="30" maxlength="30">
-                </br>
-                            
-                <%-- Champ Liste des pays --%>
-                <label for="pays">Pays : </label>
-                <select name="idPays">
-                    <%
-                        ArrayList<Pays> lesPays= (ArrayList)request.getAttribute("pLesPays");
-                        for (int i=0; i<lesPays.size();i++){
-                            Pays p = lesPays.get(i);
-                            out.println("<option value='" + p.getId()+"'>" + p.getNom()+"</option>" );
-                        }
-                    %>
-                </select>
-                </br>            
+                </br>           
                                
             <input type="submit" name="valider" id="valider" value="Valider"/>
             </form>
