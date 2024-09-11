@@ -73,7 +73,7 @@ public class DaoSport {
             s.setLesAthletes(athletes);
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("La requête de getPaysById a généré une erreur");
+            System.out.println("La requête de getSportById a généré une erreur");
         }
         return s;
     }
@@ -87,9 +87,8 @@ public class DaoSport {
             // la paramètre RETURN_GENERATED_KEYS est ajouté à la requête afin de pouvoir récupérer l'id généré par la bdd (voir ci-dessous)
             // supprimer ce paramètre en cas de requête sans auto_increment.
             requeteSql=connection.prepareStatement("INSERT INTO sport (nom)\n" +
-                    "VALUES (?,?)", requeteSql.RETURN_GENERATED_KEYS );
+                    "VALUES (?)", requeteSql.RETURN_GENERATED_KEYS );
             requeteSql.setString(1, spo.getNom());      
-            requeteSql.setInt(2, spo.getAthlete().getId());
 
            /* Exécution de la requête */
             requeteSql.executeUpdate();
