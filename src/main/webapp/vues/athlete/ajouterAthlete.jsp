@@ -26,11 +26,11 @@
                 <label for="nom">NOM : </label>
                 <input id="nom" type="text" name="nom"  size="30" maxlength="30">
                 </br>
-                <label for="nom">PRENOM : </label>
+                <label for="prenom">PRENOM : </label>
                 <input id="prenom" type="text" name="prenom"  size="30" maxlength="30"> 
                 </br>
-                <label for="nom">DATE DE NAISSANCE : </label>
-                <input id="naissance" type="date" name="naissance"  size="30" maxlength="30">     
+                <label for="dateNaiss">DATE DE NAISSANCE : </label>
+                <input id="dateNaiss" type="date" name="dateNaiss"  size="30" maxlength="30">     
                 </br>
                 <%-- Champ Liste des pays --%>
                 <label for="pays">Pays : </label>
@@ -43,7 +43,7 @@
                         }
                     %>
                 </select>
-                </br>            
+                </br>
                                
             <input type="submit" name="valider" id="valider" value="Valider"/>
             </form>
