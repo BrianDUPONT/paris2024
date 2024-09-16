@@ -5,6 +5,8 @@
 package sio.paris2024.form;
 
 import jakarta.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.Map;
 import sio.paris2024.model.Athlete;
@@ -61,28 +63,50 @@ public class FormAthlete {
         Athlete ath  = new Athlete();
          
         String nom = getDataForm( request, "nom" );
-        int idPays = Integer.parseInt((String)getDataForm( request, "idPays" ));
-       
-      
-        try {
-             validationNom( nom );
-        } catch ( Exception e ) {
-            setErreur( "nom", e.getMessage() );
+        String prenom = getDataForm( request, "prenom");
+        
+        String dateNaissanceStr = getDataForm(request, "dateNaiss");
+        LocalDate dateNaissance = null;
+        if (dateNaissanceStr != null) {
+            try {
+                dateNaissance = LocalDate.parse(dateNaissanceStr);
+            } catch (DateTimeParseException e) {
+                setErreur("dateNaiss", "Le format de la date de naissance est invalide.");
+            }
+        } else {
+            setErreur("dateNaiss", "La date de naissance est requise.");
         }
-        ath.setNom(nom);
+        
+        // Récupération et validation de l'ID du pays
+        int idPays = -1;
+        try {
+            idPays = Integer.parseInt(getDataForm(request, "idPays"));
+        } catch (NumberFormatException e) {
+            setErreur("idPays", "Le pays sélectionné est invalide.");
+        }
 
-        if ( erreurs.isEmpty() ) {
+        // Validation du nom
+        try {
+            validationNom(nom);
+        } catch (Exception e) {
+            setErreur("nom", e.getMessage());
+        }
+
+        // Affectation des valeurs à l'objet Athlete
+        ath.setNom(nom);
+        ath.setPrenom(prenom);
+        ath.setDateNaiss(dateNaissance);
+
+        Pays p = new Pays(idPays);
+        ath.setPays(p);
+
+        // Détermination du résultat de l'ajout
+        if (erreurs.isEmpty()) {
             resultat = "Succès de l'ajout.";
         } else {
             resultat = "Échec de l'ajout.";
         }
-         
-      
-     
-        Pays p = new Pays(idPays);
-        ath.setPays(p);
-        
-        return ath ;
+
+        return ath;
     }
-    
 }
