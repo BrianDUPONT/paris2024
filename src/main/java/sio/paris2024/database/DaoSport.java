@@ -48,7 +48,7 @@ public class DaoSport {
         
     }
     
-    public static Sport getSportById(Connection cnx, int idSport) {
+    public static Sport getLesAthletesBySportId(Connection cnx, int idSport) {
         Sport s = new Sport();
         ArrayList<Athlete> athletes = new ArrayList<>();
         try {
@@ -99,7 +99,7 @@ public class DaoSport {
                 idGenere = resultatRequete.getInt( 1 );
                 spo.setId(idGenere);
                 
-                spo = DaoSport.getSportById(connection, spo.getId());
+                spo = DaoSport.getLesAthletesBySportId(connection, spo.getId());
             }
             
          
