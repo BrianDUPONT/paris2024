@@ -50,7 +50,7 @@ public class DaoPays {
         return lesPays;
     }
         
-    public static Pays getPaysById(Connection cnx, int idPays) {
+    public static Pays getLesAthletesByPaysId(Connection cnx, int idPays) {
         Pays p = new Pays();
         ArrayList<Athlete> athletes = new ArrayList<>();
         try {
