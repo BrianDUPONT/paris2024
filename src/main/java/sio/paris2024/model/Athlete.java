@@ -17,6 +17,7 @@ public class Athlete {
     private String prenom;
     private String nom ;
     private Pays pays ;
+    private Sport sport ;
     public Athlete() {
     }
 
@@ -70,4 +71,13 @@ public class Athlete {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
+
+    public Sport getSport() {
+        return sport;
+    }
+
+    public void setSport(Sport sport) {
+        this.sport = sport;
+    }
+    
 }

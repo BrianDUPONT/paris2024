@@ -54,7 +54,7 @@
                 <tbody>
                     <tr>
                     <%
-                        if (s != null && s.getLesAthletes() != null) {
+                         if (s != null && s.getLesAthletes() != null) {
                             for (Athlete a : s.getLesAthletes()) {
                                 out.println("<tr><td>");
                                 out.println(a.getId());
