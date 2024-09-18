@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import sio.paris2024.model.Athlete;
 import sio.paris2024.model.Pays;
+import sio.paris2024.model.Sport;
 
 /**
  *
@@ -84,6 +85,14 @@ public class FormAthlete {
         } catch (NumberFormatException e) {
             setErreur("idPays", "Le pays sélectionné est invalide.");
         }
+        
+        // Récupération et validation de l'ID du sport
+        int idSport = -1;
+        try {
+            idSport = Integer.parseInt(getDataForm(request, "idSport"));
+        } catch (NumberFormatException e) {
+            setErreur("idSport", "Le pays sélectionné est invalide.");
+        }
 
         // Validation du nom
         try {
@@ -99,6 +108,8 @@ public class FormAthlete {
 
         Pays p = new Pays(idPays);
         ath.setPays(p);
+        Sport s = new Sport(idSport);
+        ath.setSport(s);
 
         // Détermination du résultat de l'ajout
         if (erreurs.isEmpty()) {
