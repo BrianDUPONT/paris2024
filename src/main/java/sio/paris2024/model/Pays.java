@@ -15,7 +15,6 @@ public class Pays {
     private String code;
     private String nom ;
     private ArrayList<Athlete> lesAthletes ;
-    private Athlete athlete ;
     public Pays() {
     }
 
@@ -67,14 +66,6 @@ public class Pays {
             lesAthletes = new ArrayList<Athlete>();
         }
         lesAthletes.add(a);
-    }
-
-    public Athlete getAthlete() {
-        return athlete;
-    }
-
-    public void setAthlete(Athlete athlete) {
-        this.athlete = athlete;
     }
     
 }
