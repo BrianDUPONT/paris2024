@@ -78,7 +78,7 @@ public class DaoAthlete {
                 
                    a.setId(resultatRequete.getInt("a_id"));
                    a.setNom(resultatRequete.getString("a_nom"));
-                   a.setPrenom(resultatRequete.getString("a_nom"));
+                   a.setPrenom(resultatRequete.getString("a_prenom"));
                     
                    Pays p = new Pays();
                    p.setId(resultatRequete.getInt("p_id"));
