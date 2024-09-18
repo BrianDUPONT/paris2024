@@ -17,8 +17,6 @@
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	crossorigin="anonymous">
         
-        <title>Paris 2024</title>
-
         <style>
             body {
 		padding-top: 50px;
