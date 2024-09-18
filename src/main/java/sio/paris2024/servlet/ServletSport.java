@@ -96,7 +96,7 @@ public class ServletSport extends HttpServlet {
         if(url.equals("/paris2024/ServletSport/consulter"))
         { 
             int idSport = Integer.parseInt((String)request.getParameter("idSport"));
-            Sport s = DaoSport.getSportById(cnx, idSport);
+            Sport s = DaoSport.getLesAthletesBySportId(cnx, idSport);
             request.setAttribute("pSport", s);
             //System.out.println("lister eleves - nombres d'élèves récupérés" + lesEleves.size() );
            getServletContext().getRequestDispatcher("/vues/sport/consulterSport.jsp").forward(request, response);
