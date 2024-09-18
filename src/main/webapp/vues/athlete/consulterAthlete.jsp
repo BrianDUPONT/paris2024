@@ -37,7 +37,7 @@
                 Athlete a = (Athlete)request.getAttribute("pAthlete");
         %>
         <div class="container special">
-            <h2 class="h2"><%  out.println(a.getNom());%></h2>
+            <h2 class="h2"><%  out.println(a.getNom()); out.println(a.getPrenom());%></h2>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">  
                     <thead>
