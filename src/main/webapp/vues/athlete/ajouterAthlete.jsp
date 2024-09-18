@@ -24,17 +24,17 @@
         
         <form class="form-inline" action="ajouter" method="POST">
                 <label for="nom">NOM : </label>
-                <input id="nom" type="text" name="nom"  size="30" maxlength="30">
+                <input id="nom" type="text" name="nom"  size="30" maxlength="30" required>
                 </br>
                 <label for="prenom">PRENOM : </label>
-                <input id="prenom" type="text" name="prenom"  size="30" maxlength="30"> 
+                <input id="prenom" type="text" name="prenom"  size="30" maxlength="30" required> 
                 </br>
                 <label for="dateNaiss">DATE DE NAISSANCE : </label>
-                <input id="dateNaiss" type="date" name="dateNaiss"  size="30" maxlength="30">     
+                <input id="dateNaiss" type="date" name="dateNaiss"  size="30" maxlength="30" required>     
                 </br>
                 <%-- Champ Liste des pays --%>
                 <label for="pays">Pays : </label>
-                <select name="idPays">
+                <select name="idPays" required>
                     <%
                         ArrayList<Pays> lesPays= (ArrayList)request.getAttribute("pLesPays");
                         for (int i=0; i<lesPays.size();i++){
