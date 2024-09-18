@@ -7,6 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="sio.paris2024.model.Athlete"%>
 <%@page import="sio.paris2024.model.Pays"%>
+<%@page import="sio.paris2024.model.Sport"%>
+
 <!DOCTYPE html>
 <html>
         <head>
@@ -44,12 +46,15 @@
                         <tr>             
                             <th>id</th>
                             <th>pays</th>
+                            <th>sport</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><%  out.println(a.getId());%></td>
                             <td><%  out.println(a.getPays().getNom());%></td>
+                            <td><%  out.println(a.getSport().getNom());%></td>
                         </tr>
                     </tbody>
             </table>
