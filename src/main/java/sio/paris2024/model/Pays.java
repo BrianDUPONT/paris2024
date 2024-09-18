@@ -16,7 +16,6 @@ public class Pays {
     private String nom ;
     private ArrayList<Athlete> lesAthletes ;
     private Athlete athlete ;
-
     public Pays() {
     }
 
