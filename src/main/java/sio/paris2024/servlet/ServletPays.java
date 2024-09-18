@@ -95,7 +95,7 @@ public class ServletPays extends HttpServlet {
         if(url.equals("/paris2024/ServletPays/consulter"))
         { 
             int idPays = Integer.parseInt((String)request.getParameter("idPays"));
-            Pays p = DaoPays.getPaysById(cnx, idPays);
+            Pays p = DaoPays.getLesAthletesByPaysId(cnx, idPays);
             request.setAttribute("aPays", p);
             //System.out.println("lister eleves - nombres d'élèves récupérés" + lesEleves.size() );
            getServletContext().getRequestDispatcher("/vues/pays/consulterPays.jsp").forward(request, response);
