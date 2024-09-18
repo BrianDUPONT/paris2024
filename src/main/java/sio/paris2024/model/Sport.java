@@ -11,12 +11,15 @@ import java.util.ArrayList;
  * @author zakina
  */
 public class Sport {
-    
     private int id;
     private String nom ;
     private ArrayList<Athlete> lesAthletes ;
     private Athlete athlete ;
     public Sport() {
+    }
+    
+    public Sport(int id) {
+        this.id = id;
     }
     
     public Sport(int id, String nom) {
