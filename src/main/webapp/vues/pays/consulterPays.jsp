@@ -74,8 +74,7 @@
                     </tr>
                 </tbody>
             </table>
-        </body>
          </div>
        </div>
-  
+    </body>
 </html>
