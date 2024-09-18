@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import sio.paris2024.model.Athlete;
+import sio.paris2024.model.Sport;
 import sio.paris2024.model.Pays;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -66,9 +67,11 @@ public class DaoAthlete {
         
         Athlete a = new Athlete();
         try{
-            requeteSql = cnx.prepareStatement("select a.id as a_id, a.nom as a_nom, a.prenom as a_prenom,  p.id as p_id, p.nom as p_nom " +
+            requeteSql = cnx.prepareStatement("select a.id as a_id, a.nom as a_nom, a.prenom as a_prenom,  p.id as p_id, p.nom as p_nom, s.id as s_id, s.nom as s_nom" +
                          " from athlete a inner join pays p " +
                          " on a.pays_id = p.id " + 
+                         " inner join sport s" +
+                         " on a.sport_id = s.id" +
                          " where a.id = ? ");
             //System.out.println("REQ="+ requeteSql);
             requeteSql.setInt(1, idAthlete);
@@ -83,8 +86,13 @@ public class DaoAthlete {
                    Pays p = new Pays();
                    p.setId(resultatRequete.getInt("p_id"));
                    p.setNom(resultatRequete.getString("p_nom"));
+                   
+                   Sport s = new Sport();
+                   s.setId(resultatRequete.getInt("s_id"));
+                   s.setNom(resultatRequete.getString("s_nom"));
                 
                     a.setPays(p);
+                    a.setSport(s);
                 
             }
            
