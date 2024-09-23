@@ -138,7 +138,7 @@ public class ServletSport extends HttpServlet {
             Sport sportInsere =  DaoSport.addSport(cnx, spo);
             if (sportInsere != null ){
                 request.setAttribute( "pSport", sportInsere );
-                this.getServletContext().getRequestDispatcher("/vues/sport/consulterSport.jsp" ).forward( request, response );
+                this.getServletContext().getRequestDispatcher("/vues/sport/listerSports.jsp" ).forward( request, response );
             }
             else 
             {
